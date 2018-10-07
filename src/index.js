@@ -1,6 +1,6 @@
 // DO WHATEVER YOU WANT HERE
 
-let x = 1;
+
 
 const createEnumerableProperty = (propertyName) => {
 
@@ -27,19 +27,11 @@ const createProtoMagicObject = () => {
     return obj;
 
 };
-
+let count1 = 0;
 const incrementor = () => {
-
-    function count(){
-
-        x++;
-
-        return count;
-
-    }
-
-    return count;
-
+    count1++;
+    incrementor.valueOf = ()=>{ return count1 };
+    return incrementor
 };
 
 const asyncIncrementor = () => {};
@@ -107,7 +99,7 @@ const getDeepPropertiesCount = (obj) => {
 };
 
 const createSerializedObject = () => {
-
+return null;
 };
 
 const toBuffer = () => {};
