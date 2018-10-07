@@ -1,18 +1,140 @@
 // DO WHATEVER YOU WANT HERE
 
-const createEnumerableProperty = () => {};
-const createNotEnumerableProperty = () => {};
-const createProtoMagicObject = () => {};
-const incrementor = () => {};
+let x = 1;
+
+const createEnumerableProperty = (propertyName) => {
+
+    return propertyName;
+
+};
+
+const createNotEnumerableProperty = (propertyName) => {
+
+    return Symbol(propertyName);
+
+};
+
+const createProtoMagicObject = () => {
+
+    let obj = function () {};
+
+    let Person = function(){};
+
+    obj.prototype = Person;
+
+    obj.__proto__ = Person;
+
+    return obj;
+
+};
+
+const incrementor = () => {
+
+    function count(){
+
+        x++;
+
+        return count;
+
+    }
+
+    return count;
+
+};
+
 const asyncIncrementor = () => {};
-const createIncrementer = () => {};
+
+const createIncrementer = () => {
+
+    function* idMaker(){
+
+        let index = 1;
+
+        while(index<=100)
+
+            yield index++;
+
+    }
+
+    return idMaker();
+
+};
+
+
 
 // return same argument not earlier than in one second, and not later, than in two
-const returnBackInSecond = () => {};
-const getDeepPropertiesCount = () => {};
-const createSerializedObject = () => {};
+
+const returnBackInSecond = (param) => {
+
+    return new Promise(resolve => {
+
+        setTimeout(() => {
+
+            resolve(param);
+
+        }, 1100);
+
+    });
+
+};
+
+const getDeepPropertiesCount = (obj) => {
+
+    let count=1;
+
+    function getCount(obj){
+
+        for(let key in obj){
+
+            if(typeof obj[key]==='object' && Object.keys(obj[key]).length){
+
+                count+= Object.keys(obj[key]).length;
+
+                return getCount(obj[key]);
+
+            }
+
+        }
+
+    }
+
+
+
+    getCount(obj);
+
+    return count;
+
+};
+
+const createSerializedObject = () => {
+
+};
+
 const toBuffer = () => {};
-const sortByProto = () => {};
+
+const sortByProto = (arr) => {
+
+    function getCount(obj){
+
+        let count = 0;
+
+        while(obj.__proto__!==Object.prototype){
+
+            ++count;
+
+            obj = obj.__proto__;
+
+        }
+
+        return count;
+
+    }
+
+    arr.sort((a,b)=>getCount(a)<getCount(b));
+
+    return arr;
+
+};
 
 exports.createEnumerableProperty = createEnumerableProperty;
 exports.createNotEnumerableProperty = createNotEnumerableProperty;
