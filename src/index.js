@@ -34,22 +34,11 @@ const incrementor = () => {
     return incrementor
 };
 
-const asyncIncrementor = () => {};
-
-const createIncrementer = () => {
-
-    function* idMaker(){
-
-        let index = 1;
-
-        while(index<=100)
-
-            yield index++;
-
-    }
-
-    return idMaker();
-
+let count_2=0;
+const asyncIncrementor = () => {
+    count_2++;
+    asyncIncrementor.valueOf = ()=>{return count_2;};
+    return asyncIncrementor;
 };
 
 
